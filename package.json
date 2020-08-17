@@ -1,0 +1,18 @@
+{
+  "name": "scraper-imss",
+  "version": "0.1.0",
+  "description": "Scraper del sitio de compras del IMSS (México)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "PODER",
+  "license": "ISC",
+  "dependencies": {
+    "command-line-args": "^5.1.1",
+    "company-laundry": "git+http://git@gitlab.rindecuentas.org/equipo-qqw/company-laundry.git",
+    "fs": "0.0.1-security",
+    "jsdom": "^16.3.0",
+    "puppeteer": "^5.2.1"
+  }
+}
