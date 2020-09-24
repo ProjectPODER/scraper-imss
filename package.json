@@ -1,6 +1,6 @@
 {
   "name": "scraper-imss",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Scraper del sitio de compras del IMSS (México)",
   "main": "index.js",
   "scripts": {
