@@ -32,6 +32,11 @@ Stream de JSON lines, un contrato por línea.
 Nota: El proceso tarda unos 15 minutos, conviene eliminar node_modules antes de correrlo para disminuir el tiempo.
 
 Al finalizar aparecen las IPs de los servidores. Para conectarse:
+
     ssh nodejs@[IP]
 
 El scrapper estará corriendo en /home/nodejs/scrapper-imss dentro de un SCREEN
+
+Una vez que termine de correr el scrapper, es necesario eliminar los droplets
+
+    doctl compute droplet delete --tag-name imscrap
