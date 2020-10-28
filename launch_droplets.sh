@@ -24,7 +24,7 @@ for YEAR in ${Years[@]}; do
     ssh nodejs@${IP} "cd $SCRIPT_PATH_REMOTE && npm install"
 
     echo "Launching ${YEAR} in ${IP} ..."
-    ssh nodejs@${IP} screen -d -m -S ${SCRIPT_LABEL} "node ${SCRIPT_PATH_REMOTE}/index.js -v -o file -y ${YEAR}"
+    ssh nodejs@${IP} "cd $SCRIPT_PATH_REMOTE && screen -d -m -S ${SCRIPT_LABEL} node ${SCRIPT_PATH_REMOTE}/index.js -v -o file -y ${YEAR}"
 
     echo "Remote screens list in ${IP}"
     ssh nodejs@${IP} screen -ls
