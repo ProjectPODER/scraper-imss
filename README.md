@@ -24,3 +24,14 @@ Stream de JSON lines, un contrato por línea.
 
     file    Guardar contratos en un archivo JSON lines dentro de la carpeta output (AÑO.json).
     stdout  Los contratos se muestran directamente en la consola
+
+## Correr en múltiples droplets en digital ocean
+
+    ./launch_droplets
+
+Nota: El proceso tarda unos 15 minutos, conviene eliminar node_modules antes de correrlo para disminuir el tiempo.
+
+Al finalizar aparecen las IPs de los servidores. Para conectarse:
+    ssh nodejs@[IP]
+
+El scrapper estará corriendo en /home/nodejs/scrapper-imss dentro de un SCREEN
