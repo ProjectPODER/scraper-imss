@@ -12,7 +12,7 @@ SCRIPT_PATH_LOCAL=`pwd`/*
 SCRIPT_LABEL=imscrap
 SCRIPT_DEPENDENCIES="ca-certificates fonts-liberation libappindicator3-1 libasound2 libatk-bridge2.0-0 libatk1.0-0 libc6 libcairo2 libcups2 libdbus-1-3 libexpat1 libfontconfig1 libgbm1 libgcc1 libglib2.0-0 libgtk-3-0 libnspr4 libnss3 libpango-1.0-0 libpangocairo-1.0-0 libstdc++6 libx11-6 libx11-xcb1 libxcb1 libxcomposite1 libxcursor1 libxdamage1 libxext6 libxfixes3 libxi6 libxrandr2 libxrender1 libxss1 libxtst6 lsb-release wget xdg-utils"
 DROPLET_REGION=sfo2
-DROPLET_SIZE=s-1vcpu-2gb
+DROPLET_SIZE=s-1vcpu-1gb
 DROPLET_IMAGE=nodejs-20-04
 
 for YEAR in ${Years[@]}; do
