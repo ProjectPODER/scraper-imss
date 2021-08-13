@@ -19,7 +19,7 @@ for YEAR in ${Years[@]}; do
     echo "Creating ${SCRIPT_LABEL}${YEAR} droplet ..."
     RESPONSE=`doctl compute droplet create --region ${DROPLET_REGION} --size ${DROPLET_SIZE} --image ${DROPLET_IMAGE} --tag-name ${SCRIPT_LABEL} --wait --format PublicIPv4 --ssh-keys="63:83:0f:42:1f:27:6a:e7:06:64:b2:85:53:a9:4d:f8,dc:76:91:e4:bc:65:54:ca:54:e1:34:b4:a0:16:92:4d" ${SCRIPT_LABEL}${YEAR}`
     IP="${RESPONSE/Public IPv4$'\n'/}"
-    sleep 25
+    sleep 45
 
     echo "Configuring ${IP} ..."
     ssh  -o "StrictHostKeyChecking no" root@${IP} "cp -r /root/.ssh /home/nodejs && chown -R nodejs:nodejs /home/nodejs"
