@@ -1,42 +1,47 @@
 # scraper-imss
-Scraper del sitio de compras del IMSS (México)
 
-### Uso
+Scraper for [Compras IMSS](http://compras.imss.gob.mx/) website (México).
 
-    node index.js [-y AÑOS -v -o SALIDA -s CAT SUBCAT RUBRO]
+### Usage
+
+    node index.js [-y YEARS -v -o OUTPUT -s CAT SUBCAT RUBRO]
 
 ### Parámetros
 
-    -y --year       Años a scrapear (listado separado por espacios)
-    -v --verbose    Mostrar información de debug
-    -o --output     Modo de salida
-    -s --startFrom  Iniciar scrapeo desde una categoría/subcategoría/rubro
+    -y --year       List of years to scrape (strings separated by spaces).
+    -v --verbose    Show verbose output and debug information
+    -o --output     Output mode.
+    -s --startFrom  Start scraping from specific category/subcategory/rubro.
 
-##### Especificar un punto de partida
+##### Specifying a starting point
 
-Con el argumento -s es posible iniciar el scrapeo de un año a partir de una categoría/subcategoría/rubro específicos. El parámetro se especifica como una secuencia de 3 strings, esperando como mínimo el ID de una categoría y aceptando además el ID de una subcategoría y de un rubro (si aplica). Los resultados se agregarán al final del archivo JSON de ese año si ya existe.
+With the -s command line option it is possible to start scraping from a specific category, subcategory, or rubro (subdivisions of subcategories). This parameter is specified as a sequence of 3 strings, expecting at least one category ID, and also accepting a subcategory and rubro ID (if applicable). Results are appended to that year's output file if it already exists.
 
-### Salida
+### Output
 
-Stream de JSON lines, un contrato por línea.
+Stream of JSON lines, one contract per line.
 
-##### Modos de salida
+##### Output modes
 
-    file    Guardar contratos en un archivo JSON lines dentro de la carpeta output (AÑO.json).
-    stdout  Los contratos se muestran directamente en la consola
+    file    Save contracts in a JSON file inside **output/** directory (YEAR.json).
+    stdout  JSON objects, one object per line, representing individiual contracts to stdout.
 
-## Correr en múltiples droplets en digital ocean
+## Launch Digital Ocean droplets
 
-    ./launch_droplets
+    ./launch_droplets [YEARS]
 
-Nota: El proceso tarda unos 15 minutos, conviene eliminar node_modules antes de correrlo para disminuir el tiempo.
+Note: delete node_modules before launching droplets to speed up creation time.
 
-Al finalizar aparecen las IPs de los servidores. Para conectarse:
+To view all running scrapers, use the following command:
+
+    doctl compute droplet list --tag-name imscrap
+
+When the process ends, output shows a list of server IPs. To connect to each server:
 
     ssh nodejs@[IP]
 
-El scrapper estará corriendo en /home/nodejs/scrapper-imss dentro de un SCREEN
-
-Una vez que termine de correr el scrapper, es necesario eliminar los droplets
+Scrapers will be running in /home/nodejs/scrapper-imss inside a **screen** process. Once a scraper has finished running and data has been downloaded, droplets should be deleted using the following command:
 
     doctl compute droplet delete --tag-name imscrap
+
+You may also delete one droplet at a time using --name [NAME] instead of the --tag-name option.

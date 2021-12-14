@@ -12,14 +12,14 @@ SCRIPT_PATH_LOCAL=`pwd`/*
 SCRIPT_LABEL=imscrap
 SCRIPT_DEPENDENCIES="ca-certificates fonts-liberation libappindicator3-1 libasound2 libatk-bridge2.0-0 libatk1.0-0 libc6 libcairo2 libcups2 libdbus-1-3 libexpat1 libfontconfig1 libgbm1 libgcc1 libglib2.0-0 libgtk-3-0 libnspr4 libnss3 libpango-1.0-0 libpangocairo-1.0-0 libstdc++6 libx11-6 libx11-xcb1 libxcb1 libxcomposite1 libxcursor1 libxdamage1 libxext6 libxfixes3 libxi6 libxrandr2 libxrender1 libxss1 libxtst6 lsb-release wget xdg-utils"
 DROPLET_REGION=sfo2
-DROPLET_SIZE=s-1vcpu-1gb
+DROPLET_SIZE=s-1vcpu-2gb
 DROPLET_IMAGE=nodejs-20-04
 
 for YEAR in ${Years[@]}; do
     echo "Creating ${SCRIPT_LABEL}${YEAR} droplet ..."
     RESPONSE=`doctl compute droplet create --region ${DROPLET_REGION} --size ${DROPLET_SIZE} --image ${DROPLET_IMAGE} --tag-name ${SCRIPT_LABEL} --wait --format PublicIPv4 --ssh-keys="63:83:0f:42:1f:27:6a:e7:06:64:b2:85:53:a9:4d:f8,dc:76:91:e4:bc:65:54:ca:54:e1:34:b4:a0:16:92:4d" ${SCRIPT_LABEL}${YEAR}`
     IP="${RESPONSE/Public IPv4$'\n'/}"
-    sleep 45
+    sleep 90
 
     echo "Configuring ${IP} ..."
     ssh  -o "StrictHostKeyChecking no" root@${IP} "cp -r /root/.ssh /home/nodejs && chown -R nodejs:nodejs /home/nodejs"
